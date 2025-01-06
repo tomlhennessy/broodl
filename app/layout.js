@@ -1,7 +1,7 @@
 import './globals.css';
-import { Fugaz_One, Inter } from "next/font/google";
+import { Fugaz_One, Open_Sans } from "next/font/google";
 
-const inter = Inter({
+const opensans = Open_Sans({
   subsets: ["latin"],
 });
 
@@ -23,15 +23,15 @@ export default function RootLayout({ children }) {
   )
 
   const footer = (
-    <footer className='p-4 sm:p-8'>
-
+    <footer className='p-4 sm:p-8 grid place-items-center'>
+      <p className={'text-indigo-500 ' + fugaz.className}>Made by Tom Hennessy</p>
     </footer>
   )
 
   return (
     <html lang="en">
       <body
-        className={'w-full max-w-[1000px] mx-auto text-sm sm:text-base min-h-screen flex flex-col ' + inter.className}
+        className={'w-full max-w-[1000px] mx-auto text-sm sm:text-base min-h-screen flex flex-col text-slate-800 ' + opensans.className}
       >
         {header}
         {children}
