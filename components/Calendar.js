@@ -1,5 +1,7 @@
+import { baseRating, demoData, gradients } from '@/app/utils';
 import { Fugaz_One } from 'next/font/google';
 import React from 'react';
+
 
 const months = {
   'January': 'Jan', 'February': 'Feb', 'March': 'Mar', 'April': 'Apr',
@@ -11,7 +13,9 @@ const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday
 
 const fugaz = Fugaz_One({ subsets: ['latin'], weight: ['400'] });
 
-export default function Calendar() {
+export default function Calendar(props) {
+  const { demo } = props
+
   const year = 2024;
   const month = 'July';
   const monthNow = new Date(year, monthsArr.indexOf(month), 1);
@@ -28,7 +32,7 @@ export default function Calendar() {
   };
 
   return (
-    <div className='flex flex-col gap-1'>
+    <div className='flex flex-col gap-1 py-4 sm:py-6 md:py-10'>
       {/* Calendar Grid */}
       {[...Array(numRows).keys()].map((rowIndex) => (
         <div key={rowIndex} className='grid grid-cols-7 gap-1'>
@@ -51,15 +55,18 @@ export default function Calendar() {
               return <div key={dayOfWeekIndex} className='h-12 bg-gray-100' />;
             }
 
+            let color = demo ? gradients.indigo[baseRating[dayIndex]] : dayIndex in demoData ? gradients.indigo[demoData[dayIndex]] : 'white'
+
             // Render valid day cell
             return (
               <div
+                style={{background: color}}
                 key={dayOfWeekIndex}
-                className={`h-12 flex items-center justify-center rounded ${
-                  isToday ? 'bg-blue-500 text-white' : 'bg-white'
-                }`}
+                className={`h-12 flex items-center justify-between rounded-lg border border-solid text-xs sm:text-sm gap-2 ${
+                  isToday ? 'bg-indigo-400' : 'border-indigo-100 bg-white'
+                } ${color === 'white' ? 'text-indigo-400' : 'text-white'}`}
               >
-                {dayIndex}
+                <p>{dayIndex}</p>
               </div>
             );
           })}
