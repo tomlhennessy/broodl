@@ -18,14 +18,14 @@ export default function Calendar(props) {
   const now = new Date()
   const currMonth = now.getMonth()
   const [selectedMonth, setSelectedMonth] = useState(Object.keys(months)[currMonth])
-  const [selectedYear, setSelectedYear] = useState(now.getFullYear)
+  const [selectedYear, setSelectedYear] = useState(now.getFullYear())
 
   const { demo, data, handleSetMood } = props
-  const year = 2024;
-  const month = 'July';
-  const monthNow = new Date(year, monthsArr.indexOf(month), 1);
+  // const year = 2024;
+  // const month = 'July';
+  const monthNow = new Date(selectedYear, monthsArr.indexOf(selectedMonth), 1);
   const firstDayOfMonth = monthNow.getDay(); // Which day of the week the month starts
-  const daysInMonth = new Date(year, monthsArr.indexOf(month) + 1, 0).getDate();
+  const daysInMonth = new Date(selectedYear, monthsArr.indexOf(selectedMonth) + 1, 0).getDate();
 
   const totalCells = firstDayOfMonth + daysInMonth; // Total cells needed
   const numRows = Math.ceil(totalCells / 7); // Number of rows in the calendar
@@ -35,6 +35,11 @@ export default function Calendar(props) {
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
   };
+
+  function handleIncrementMonth(val) {
+    // value +1 -1
+    // if we hit the bounds of the months, then we can adjust the year that is displayed
+  }
 
   return (
     <div className='flex flex-col gap-1 py-4 sm:py-6 md:py-10'>
@@ -52,8 +57,8 @@ export default function Calendar(props) {
             const isToday =
               isValidDay &&
               dayIndex === today.day &&
-              monthsArr.indexOf(month) === today.month &&
-              year === today.year;
+              monthsArr.indexOf(selectedMonth) === today.month &&
+              selectedYear === today.year;
 
             // Render blank cell for invalid days
             if (!isValidDay) {
