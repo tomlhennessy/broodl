@@ -1,6 +1,7 @@
+'use client'
 import { baseRating, demoData, gradients } from '@/app/utils';
 import { Fugaz_One } from 'next/font/google';
-import React from 'react';
+import React, { useState } from 'react';
 
 
 const months = {
@@ -14,8 +15,12 @@ const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday
 const fugaz = Fugaz_One({ subsets: ['latin'], weight: ['400'] });
 
 export default function Calendar(props) {
-  const { demo } = props
+  const now = new Date()
+  const currMonth = now.getMonth()
+  const [selectedMonth, setSelectedMonth] = useState(Object.keys(months)[currMonth])
+  const [selectedYear, setSelectedYear] = useState(now.getFullYear)
 
+  const { demo, data, handleSetMood } = props
   const year = 2024;
   const month = 'July';
   const monthNow = new Date(year, monthsArr.indexOf(month), 1);
