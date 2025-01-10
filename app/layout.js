@@ -3,6 +3,7 @@ import './globals.css';
 import { Fugaz_One, Open_Sans } from "next/font/google";
 import { AuthProvider } from '@/context/AuthContext';
 import Head from './head';
+import Logout from '@/components/Logout';
 
 const opensans = Open_Sans({
   subsets: ["latin"],
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
         <h1 className={'text-base sm:text-lg textGradient ' + fugaz.className}>Broodl</h1>
       </Link>
 
-
+      <Logout />
     </header>
   )
 
