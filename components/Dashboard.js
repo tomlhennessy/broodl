@@ -6,6 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 import { doc, setDoc } from 'firebase/firestore';
 import Login from './Login';
 import Loading from './Loading';
+import { db } from '@/firebase';
 
 const fugaz = Fugaz_One({
   subsets: ["latin"],
@@ -22,37 +23,44 @@ export default function Dashboard() {
   }
 
   async function handleSetMood(mood) {
-    const now = new Date()
-    const day = now.getDate()
-    const month = now.getMonth()
-    const year = now.getFullYear()
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth();
+    const year = now.getFullYear();
+
+    if (!currentUser) {
+        console.error("No user is logged in. Cannot set mood.");
+        return;
+    }
 
     try {
-      const newData = { ...userDataObj }
-      if (!newData?.[year]) {
-        newData[year] = {}
-      }
-      if (!newData?.[year]?.[month]) {
-        newData[year][month] = {}
-      }
-
-      newData[year][month][day] = mood
-      // update the current state
-      setData(newData)
-      // update the global state
-      setUserDataObj(newData)
-      // update firebase
-      const docRef = doc(db, 'users', currentUser.uid)
-      const res = await setDoc(docRef, {
-        [year]: {
-          [month]: {
-            [day]: mood
-          }
+        const newData = { ...userDataObj };
+        if (!newData[year]) {
+            newData[year] = {};
         }
-      }, { merge: true })
+        if (!newData[year][month]) {
+            newData[year][month] = {};
+        }
 
+        newData[year][month][day] = mood;
+
+        // Update local state
+        setData(newData);
+        setUserDataObj(newData);
+
+        // Write to Firestore
+        const docRef = doc(db, 'users', currentUser.uid);
+        await setDoc(docRef, {
+            [year]: {
+                [month]: {
+                    [day]: mood,
+                },
+            },
+        }, { merge: true });
+        console.log("Firestore write complete for:", year, month, day, "with mood:", mood);
     } catch (err) {
-      console.log('Failed to set data: ', err.message)
+        console.error('Failed to set mood:', err.message);
+        alert('Failed to update your mood. Please try again.');
     }
   }
 
@@ -74,6 +82,7 @@ export default function Dashboard() {
     if (!currentUser || !userDataObj) {
       return
     }
+    console.log("Updated userDataObj: ", userDataObj)
     setData(userDataObj)
   }, [currentUser, userDataObj])
 
@@ -113,7 +122,7 @@ export default function Dashboard() {
           )
         })}
       </div>
-      <Calendar data={data} handleSetMood={handleSetMood} />
+      <Calendar completeData={data} handleSetMood={handleSetMood} />
     </div>
   )
 }

@@ -20,7 +20,7 @@ export default function Calendar(props) {
   const [selectedMonth, setSelectedMonth] = useState(Object.keys(months)[currMonth])
   const [selectedYear, setSelectedYear] = useState(now.getFullYear())
 
-  const { demo, data, handleSetMood } = props
+  const { demo, completeData, handleSetMood } = props
   // const year = 2024;
   // const month = 'July';
   const monthNow = new Date(selectedYear, monthsArr.indexOf(selectedMonth), 1);
@@ -35,6 +35,12 @@ export default function Calendar(props) {
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
   };
+
+
+  const numericMonth = Object.keys(months).indexOf(selectedMonth)
+  const data = completeData?.[selectedYear]?.[numericMonth] || {}
+  console.log("Complete Data for Calendar: ", completeData);
+  console.log("Data for Selected Year & Month:", data);
 
   function handleIncrementMonth(val) {
     // value +1 -1
@@ -65,7 +71,7 @@ export default function Calendar(props) {
               return <div key={dayOfWeekIndex} className='h-12 bg-gray-100' />;
             }
 
-            let color = demo ? gradients.indigo[baseRating[dayIndex]] : dayIndex in demoData ? gradients.indigo[demoData[dayIndex]] : 'white'
+            let color = demo ? gradients.indigo[baseRating[dayIndex]] : data[dayIndex] ? gradients.indigo[data[dayIndex]] : 'white';
 
             // Render valid day cell
             return (
