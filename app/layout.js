@@ -25,15 +25,13 @@ export default function RootLayout({ children }) {
         <h1 className={'text-base sm:text-lg textGradient ' + fugaz.className}>Broodl</h1>
       </Link>
 
-      <div className='flex items-center justify-between'>
-        PLACEHOLDER CTA || stats
-      </div>
+
     </header>
   )
 
   const footer = (
     <footer className='p-4 sm:p-8 grid place-items-center'>
-      <p className={'text-indigo-500 ' + fugaz.className}>Made by Tom Hennessy</p>
+      <p className={'text-indigo-500 ' + fugaz.className}>Created with 💛</p>
     </footer>
   )
 
