@@ -1,28 +1,56 @@
-Broodl – Your Daily Mood Tracker
+# Broodl – Daily Mood Tracker 🌤️
 
-What's the Problem?
-Many people are unaware of how their mood affects their daily life and overall well-being. Without a clear way to reflect on patterns or trends, it’s difficult to build self-awareness and take actionable steps to improve mental health.
+**Track your emotions and reflect on patterns. Build self-awareness through simple, data-driven mood logging.**
 
-How Does Broodl Solve It?
-Broodl provides a simple, intuitive platform for tracking your daily mood, empowering users to:
-- Log their daily mood using visual emojis that are easy to interpret.
-- View mood patterns over time with a calendar interface.
-- Track personal stats such as streaks, average mood, and days logged.
-- Reflect on their mental state in a way that promotes mindfulness and self-awareness.
+[🔗 Live Demo](https://broodl-mood-tracker.netlify.app/)
 
-Any Challenges I Encountered?
-- State Management: Integrating dynamic client-side components with Firebase Authentication and Firestore for seamless state management and secure data storage.
-- Calendar Logic: Calculating days, weeks, and months dynamically for any given year while handling edge cases like leap years.
-- User Experience: Designing an interface that balances simplicity and functionality without overwhelming the user.
+---
 
-What is the Final Solution?
-Broodl is a full-stack mood tracking application that enables users to build self-awareness through consistent mood tracking. Key features include:
-- Personalized Dashboard: Users can log their mood, view a dynamic calendar of past entries, and access insightful stats.
-- Firebase Integration: Secure authentication and data storage for each user.
-- Dynamic Calendar: A visually appealing calendar that highlights logged moods and displays trends over weeks and months.
-- Responsive UI: Built with React, TailwindCSS, and Next.js for a clean, modern, and accessible experience across devices.
+## 📌 Overview
 
-Tech Stack
-Frontend: Next.js, React, TailwindCSS
-Backend & Authentication: Firebase Firestore & Authentication
-Hosting: Vercel for deployment
+Broodl helps users log daily moods and identify patterns over time using a clean calendar interface and stats dashboard. It focuses on improving mental well-being through daily check-ins — while showcasing key full-stack development skills.
+
+The app combines secure authentication, real-time data syncing, and client-side state logic — demonstrating both user experience design and backend integration.
+
+---
+
+## 🚀 Features
+
+- 📅 Mood logging with visual emojis  
+- 📊 Dashboard shows:
+  - Mood streaks  
+  - Average mood  
+  - Days logged  
+- 🗓️ Dynamic calendar to visualise entries over weeks and months  
+- 🔐 Firebase Authentication and private user data  
+- 📱 Mobile-friendly design with accessible UI components  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js, React
+- **Backend & Auth:** Firebase Authentication, Firestore  
+- **Deployment:** Netlify  
+
+---
+
+## 🧩 Challenges & Solutions
+
+- **Calendar Date Logic:**  
+  Built dynamic calendar rendering that handles leap years, month boundaries, and varying week lengths — all from scratch.
+
+- **State + Firebase Sync:**  
+  Integrated client-side state with Firebase’s async reads and writes to maintain fast, reliable UI updates.
+
+- **Design Balance:**  
+  Focused on minimalism and simplicity while maintaining meaningful interaction and feedback.
+
+---
+
+## 📈 Future Improvements
+
+- 📓 Add journaling feature per day  
+- 🔔 Enable daily reminders  
+- 🌈 Expand mood indicators with tag customisation or color themes  
+
