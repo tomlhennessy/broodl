@@ -29,7 +29,7 @@ The app combines secure authentication, real-time data syncing, and client-side 
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Next.js, React
+- **Frontend:** Next.js, React, TailwindCSS
 - **Backend & Auth:** Firebase Authentication, Firestore  
 - **Deployment:** Netlify  
 
